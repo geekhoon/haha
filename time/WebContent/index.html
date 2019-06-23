@@ -1,0 +1,53 @@
+<html>
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>jQuery Clock Time Picker</title>
+  <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+  <script type="text/javascript" src="jquery-clock-timepicker.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+	  $('.time').clockTimePicker({});
+	});
+    
+    
+    function getResult(){
+    	var startTime = $("#startTime").val();
+    	var date=new Date("2017/05/17 "+startTime+":00");
+    	var timeInterval = $("#timeInterval").val();
+    	 if (timeInterval == '' || timeInterval == undefined || timeInterval == null) {
+            alert("请输入时间差！");
+         } else {
+        	var endTime = date.getTime() -parseInt(timeInterval) * 60000;
+         	var endDate=new Date(endTime);
+         	$("#endTime").html(endDate.getHours()+":"+endDate.getMinutes());
+         }
+    	
+    	
+    }
+    
+  </script>
+  <style type="text/css">
+    h1 { font-size: 20px; margin-bottom:3px; }
+    h3 { font-size: 13px; margin-top:0px; }
+    .main { text-align: center; }
+    .time { display:inline-block; font-size:26px; padding:5px; text-align:center; width:86px; }
+  </style>
+ </head>
+ <body>
+  <div class="main">
+   <p>Please choose your time:</p>
+   <input class="time" type="text" value="00:00" onchange="console.log('Time changed')" id="startTime"/>
+   <p>请输入提前的分钟数：</p>
+   <input type="text" id="timeInterval" style="width:50px;height:25px"/>
+   <br>
+   <br>
+   <input type="button"  value="查看结果"  onclick ="getResult()" />
+   <br>
+   <br>
+   <span id="endTime"></span>
+   
+  
+  </div>
+ </body>
+</html>
